@@ -1,91 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class player: MonoBehaviour
 {
-    public Rigidbody2D rigidBody;
+    public Rigidbody2D rb;
+    public float velocidad = 7f;
+    public float fuerzaSalto = 10f;
 
-    public float jumpForce;
+    int saltosRealizados = 0;
+    int maxSaltos = 2;
 
-    public int jumpsCount;
-    public int maxJumps = 2;
-
-    public float vel;
-    public int direction = 0;
-
-    public bool needKeys = false;
-    public bool hasKeys = false;
-    public int keysNeeded = 3;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
-    }
+        // MOVIMIENTO CON A Y D
+        float direccion = 0;
 
-
-    void Move()
-    {
         if (Input.GetKey(KeyCode.D))
         {
-            direction = 1;
+            direccion = 1;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            direction = -1;
+            direccion = -1;
         }
-        else
+
+        rb.velocity = new Vector2(direccion * velocidad, rb.velocity.y);
+
+        // SALTO CON ESPACIO O W
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && saltosRealizados < maxSaltos)
         {
-            direction = 0;
-        }
-        this.gameObject.transform.Translate(new Vector2(direction * vel * Time.deltaTime, 0));
-    }
-    void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsCount < maxJumps)
-        {
-            rigidBody.AddForce(new Vector2(0, jumpForce));
-            jumpsCount++;
+            rb.velocity = new Vector2(rb.velocity.x, fuerzaSalto);
+            saltosRealizados++;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D NS)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (NS.gameObject.CompareTag("Ground"))
         {
-            jumpsCount = 0;
-        }
-        if (collision.gameObject.tag == "Key")
-        {
-            Destroy(collision.gameObject);
-            keysNeeded--;
-            if (keysNeeded <= 0)
-            {
-                hasKeys = true;
-            }
-        }
-        if (collision.gameObject.tag == "Exit")
-        {
-            if (hasKeys == true || needKeys == false)
-            {
-                SceneManager.LoadScene("Zoe");
-            }
-        }
-        if (collision.gameObject.tag == "Spike")
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        if (collision.gameObject.tag == "Collectable")
-        {
-            Destroy(collision.gameObject);
+            saltosRealizados = 0;
         }
     }
 }
