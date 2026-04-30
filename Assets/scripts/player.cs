@@ -13,7 +13,7 @@ public class player: MonoBehaviour
 
     void Update()
     {
-        // MOVIMIENTO CON A Y D
+        // MOVIMIENTO 
         float direccion = 0;
 
         if (Input.GetKey(KeyCode.D))
