@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/principio_v1.unity
+    path: Assets/Scenes/Main_Menu.unity
+    guid: 14bbe06a27665344cbca87a9e959203d
+  - enabled: 1
+    path: Assets/Scenes/EscenaMansion.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Minijuego.unity
