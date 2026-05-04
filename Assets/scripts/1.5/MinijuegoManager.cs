@@ -6,22 +6,22 @@ public class MinijuegoManager : MonoBehaviour
     public GameObject panelGameOver;
     public GameObject prefabGuardian;
     public GameObject prefabID;
-    public float tiempoParaID = 15f;
-    public float intervaloSpawn = 1f;
+    public float tiempoParaID;
+    public float intervaloSpawn;
 
     private float cronometro = 0f;
     private bool idSoltada = false;
 
     void Start()
     {
-        Time.timeScale = 1f; // Nos aseguramos de que el tiempo corra
-        InvokeRepeating("SpawnGuardian", 0.5f, intervaloSpawn);
+        Time.timeScale = 1f; //tiempo
+        InvokeRepeating("SpawnGuardian", 1f, intervaloSpawn);//a xsegundos suelta guardianes
     }
 
     void Update()
     {
-        cronometro += Time.deltaTime;
-        if (cronometro >= tiempoParaID && !idSoltada)
+        cronometro += Time.deltaTime;//tiempo sumadoe real
+        if (cronometro >= tiempoParaID && !idSoltada)//paso el tiempo sufieciente pues suelta la id
         {
             idSoltada = true;
             CancelInvoke("SpawnGuardian");
@@ -31,27 +31,29 @@ public class MinijuegoManager : MonoBehaviour
 
     void SpawnGuardian()
     {
-        // Ajusta el -2f, 2f según el ancho de tu recuadro blanco
-        Vector3 pos = new Vector3(Random.Range(-2f, 2f), 6f, 0f);
-        Instantiate(prefabGuardian, pos, Quaternion.identity);
+        //caer
+        Vector3 pos = new Vector3(Random.Range(-8f, 11f), 6f, 0f);//punto al azaer
+        Instantiate(prefabGuardian, pos, Quaternion.identity);//clon
     }
 
     void SpawnID()
     {
-        Vector3 pos = new Vector3(Random.Range(-2f, 2f), 6f, 0f);
+        Vector3 pos = new Vector3(Random.Range(-7f, 9f), 6f, 0f);
         Instantiate(prefabID, pos, Quaternion.identity);
     }
+
+    //SCRIPT DEL GUARDIAN E ID dentro de este q esta dentro del gameobject de minijuego idk
 
     public void Perder()
     {
         panelGameOver.SetActive(true);
-        Time.timeScale = 0f; // Congela el juego al perder
+        Time.timeScale = 0f; //Congela el juego al perder
     }
 
     public void Ganar()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("EscenaMansionTrasera"); // Asegúrate de que el nombre sea exacto
+        SceneManager.LoadScene("EscenaMansionTrasera"); //parte de atras de la mansión
     }
 
     public void Reintentar()
@@ -59,4 +61,5 @@ public class MinijuegoManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 }

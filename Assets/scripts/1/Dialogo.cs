@@ -5,10 +5,10 @@ public class SistemaDialogo : MonoBehaviour
 {
     public GameObject panelDialogo;
     public TextMeshProUGUI textoDialogo;
-    public ControlPersonajes scriptControl; //onall aquí
+    public ControlPersonajes scriptControl; //conall aquí
     void Update()
     {
-        // Solo si el panel está encendido
+        //Solo si el panel está encendido
         if (panelDialogo.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.F))//queria que fuera con la misma tecla e para cerrar pero no dejo porque lo abria al mismo tiempo 
@@ -29,7 +29,7 @@ public class SistemaDialogo : MonoBehaviour
     public void CerrarDialogo()
     {
         panelDialogo.SetActive(false);
-        // Devolvemos el control al jugador
+        //gameplay devuelto
         scriptControl.enabled = true;
     }
 }

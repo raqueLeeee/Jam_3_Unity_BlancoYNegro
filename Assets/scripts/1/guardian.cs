@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GuardianInteraccion : MonoBehaviour
 {
-    public GameObject botonE; // El objeto que dice "Abrir Diálogo (E)"
+    public GameObject botonE; 
     public string mensaje = "¡Alto! Identificación, por favor.";
 
     private bool jugadorCerca = false;
@@ -12,7 +12,7 @@ public class GuardianInteraccion : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             jugadorCerca = true;
-            botonE.SetActive(true); // Aparece la E
+            botonE.SetActive(true); //Aparece la E
         }
     }
 
@@ -20,7 +20,7 @@ public class GuardianInteraccion : MonoBehaviour
 
     void Update()
     {
-        // Si estoy cerca y pulso E, llamo al sistema de diálogo
+        //Si estoy cerca y pulso E, llamo al sistema de diálogo
         if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
         {
             botonE.SetActive(false);

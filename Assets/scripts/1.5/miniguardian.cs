@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class Miniguardian : MonoBehaviour
 {
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // IMPORTANTE: Primera letra en Mayúscula como en tu jerarquía
+
+        //para la condicion de perder
         if (other.name == "White" || other.name == "Black")
         {
+            Debug.Log("chocasteee");
             FindObjectOfType<MinijuegoManager>().Perder();
         }
 

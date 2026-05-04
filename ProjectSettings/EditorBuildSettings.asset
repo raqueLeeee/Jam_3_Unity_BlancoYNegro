@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minijuego.unity
     guid: 5d2bf3afe56aab047aefcc688b787a36
+  - enabled: 1
+    path: Assets/Scenes/EscenaMansionTrasera.unity
+    guid: 9d37cc58c15827c419a8d0efaf5ff3ed
   m_configObjects: {}

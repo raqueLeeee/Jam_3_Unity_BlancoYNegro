@@ -7,7 +7,7 @@ public class CambioAMinijuego : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Minijuego"); // Nombre de tu nueva escena
+            SceneManager.LoadScene("Minijuego"); //se abre el juego de evitar
         }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ControlPersonajes : MonoBehaviour
 {
-    public float velocidad = 5f;
+    public float velocidad;
     public Transform azeliaTransform;
     public float distanciaDetras;
     public float suavizado;
@@ -18,7 +18,7 @@ public class ControlPersonajes : MonoBehaviour
 
     void Update()
     {
-        //MOVIMIENTO
+        //MOVIMIENTO getaxis=awsd+flechas
         float movH = Input.GetAxis("Horizontal");
         float movV = Input.GetAxis("Vertical");
         Vector3 movimiento = new Vector3(movH, movV, 0);
@@ -27,7 +27,7 @@ public class ControlPersonajes : MonoBehaviour
         //para q azelia vaya detrás
         Vector3 puntoDetras;
 
-        if (movH > 0) //Conall va a la derecha
+        if (movH > 0) //Conall va a la derecha flipx vuelta horizontal
         {
             conallSprite.flipX = false;
             azeliaSprite.flipX = false;
@@ -43,7 +43,7 @@ public class ControlPersonajes : MonoBehaviour
         }
         else
         {
-            //Si está quieto, mantenemos el punto donde estaba según hacia dónde mire
+            //Si está quieto se mantiene ahí
             float direccion = conallSprite.flipX ? 1 : -1;
             puntoDetras = transform.position + new Vector3(direccion * distanciaDetras, 0, 0);
         }

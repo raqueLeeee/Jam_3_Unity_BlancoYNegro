@@ -3,7 +3,10 @@ guid: cbb5ba1ec5509e144bfeca5f91171d8b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - panelGameOver: {fileID: 7120490640864303724, guid: 6abba48e270d6f44e8d8dd51bceef3c1, type: 3}
+  - prefabGuardian: {fileID: 6990434769063543468, guid: db09484e1481b234f8b43e838c8d998a, type: 3}
+  - prefabID: {fileID: 4790828995910364108, guid: c9e9258fd5e80884f911704f92f19a5d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
